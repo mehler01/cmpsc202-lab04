@@ -10,29 +10,31 @@ This lab reviews the foundational concepts of algorithms and data structures tha
 
 1. Use the rules from lecture 07 to prove that $T(n) = 5 \log n + 7n$ is $\mathcal{O}(n)$.
 
+    By dropping multiplicative constants, we know that $T(n)$ is $\mathcal{O}(\log n + n)$. By summing is a max then, $T(n)$ is $\mathcal{O}(max(\log n, n))=\mathcal{O}(n)$. Thus, $T(n)$ is $\mathcal{O}(n)$.
+
 2. True/False/Possibly: $T(n)$ is $\mathcal{O}(n^2)$?
 
 **Answer**: Yes
 
-**Justification**:
+**Justification**: We proved already that $T(n)$ is $\mathcal{O}(n)$. By the property that polynomial degrees grow faster, we know that $n<n^2$. Thus, since $T(n)$ is $\mathcal{O}(n)$, it is also $\mathcal{O}(n^2)$.
 
 3. True/False/Possibly: $T(n)$ is $\Omega(n \log n)$?
 
 **Answer**: No
 
-**Justification**:
+**Justification**: We know that log linear time grows faster than linear time, thus $n<n\log n$. Since $T(n)$ is $\mathcal{O}(n)$, meaning its upper bound is linear time, it cannot have a lower bound of log linear time, so $T(n)$ is not $\Omega(n \log n)$.
 
 4. For any algorithm, we can give a trivial lower bound. What is that lower bound?
 
 **Answer**: $\Omega(1)$
 
-**Justification**:
+**Justification**: The lower bound of an algorithm means that if $T(n)$ is the number of steps and $\Omega(f(n))$ is the lower bound of the algorithm, then $T(n)\geq cf(n)$ for some constant $c>0$. Since every algorithm has at least one step (except for trivial cases), the runtime $T(n)$ of any algorithm is $T(n)\geq 1$. Thus $T(n)\geq 1(1)$, where $1=c>0$. Thus $\Omega(1)$ is a lower bound for any algorithm.
 
 5. Is there a corresponding trivial upper bound? Why or why not?
 
 **Answer**: No
 
-**Justification**:
+**Justification**: The upper bound of any algorithm can be hypothetically infinite, regardless of $n$, meaning that $T(n) \rightarrow\infin$. There is no mathematical function $f(n)$ such that $T(n)=\infin\leq cf(n)$. Thus, there is no well-behaved upper bound that satisfies all algorithms.
 
 
 ## Data Structures
@@ -41,25 +43,25 @@ This lab reviews the foundational concepts of algorithms and data structures tha
 
 **Answer**: Stack
 
-**Justification**:
+**Justification**: Stacks are best because you the robot can append/push its most recent move to the end of the array. When it runs into a dead end, it can easily remove/pop its most recent move with O(1), and then peek at its most recently visit path (also with O(1)).
 
 2. A server receives a massive influx of data packets from a streaming video application. To prevent the video from skipping or playing out of order on the user's end, the server must process and forward these packets in the exact sequence they were received.
 
 **Answer**: Queue
 
-**Justification**:
+**Justification**: Queues are the best array type for this scenario since new data is appended/enqueued to the back of the queue, meaning that the order the data is received is preserved. Then, by "first in first out", grabbing/dequeing an element from the front of the list is computationall inexpensive with O(1).
 
 3. An atmospheric monitoring system reads temperature data from 10,000 sequentially numbered sensors (IDs 0 through 9999). Throughout the day, the system needs to constantly update and read the current temperature of randomly selected sensors based on their ID number to build localized weather maps.
 
 **Answer**: Array
 
-**Justification**:
+**Justification**: Using an array is the best choice for this scenario since an array is indexed. Thus, the system can grab the temperature readings of the sensors by the index of their entry in the array.
 
 4. You are building a lightweight syntax checker for a code editor. Its sole job is to scan a document and ensure that every opened parenthesis `(`, bracket `[`, and brace `{` is matched with its corresponding closing character in the correct nested order.
 
 **Answer**: Stack
 
-**Justification**:
+**Justification**: If a parenthsis `(` is the outermost nested character, then your checker will want to check the end of the code to see if parenthesis `)` is the outermost nested character coming from the other end. Then it can continue to check through the code coming from the end of the list to make sure that the nesting order of the characters is symmetric.
 
 ## Empirical Comparison of Algorithms
 
